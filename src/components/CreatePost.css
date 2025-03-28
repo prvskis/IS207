@@ -1,0 +1,123 @@
+.create-post {
+    display: flex;
+    max-width: 1000px;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+.create-post h3 {
+    margin-bottom: 10px;
+    display: flex;
+  }
+  
+.post-content {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: vertical;
+    margin-bottom: 10px;
+  }
+  
+.post-actions {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+  
+.upload-container {
+    display: flex;
+    align-items: center;
+}
+  
+.upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #287cfa;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+}
+  
+.camera-icon {
+    font-size: 20px;
+    color: #2767e7;
+}
+  
+.upload-button:hover {
+    background: #e4e6eb;
+}
+  
+.upload-button:hover .camera-icon {
+    color: #1877f2;
+}
+  
+.create-post input[type="file"] {
+    display: none;
+}
+  
+.preview-container {
+    position: relative;
+    margin-top: 15px;
+    line-height: 0;
+    width: 200px;
+}
+  
+.preview-image {
+    width: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+  
+.create-post-button {
+    justify-content: flex-start;
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 0;
+}
+
+.remove-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+.remove-icon {
+    font-size: 16px;
+}
+
+.remove-image:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  
+.create-post button:hover {
+    background: linear-gradient(45deg, #0056b3, #0091ea);
+  }
+  

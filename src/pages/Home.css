@@ -1,0 +1,103 @@
+/* src/pages/Home.css */
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f0f2f5;
+  }
+
+.container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+.post {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.1);
+  }
+  
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+  }
+  
+.actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+.button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+  }
+  
+.button:hover {
+    color: #007bff;
+  }
+  
+.comment-box {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+  }
+  
+.input {
+    flex: 1;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+.comment-button {
+    background: #007bff;
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+.comment {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #555;
+  }
+
+.content {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.post-image {
+    width: 40px;
+    margin-top: 10px;
+    border-radius: 30px;
+}
+
+.user-link {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.user-link:hover {
+  text-decoration: underline;
+}
+

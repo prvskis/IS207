@@ -1,10 +1,9 @@
 import { useState, useContext } from "react";
-import { posts } from "../data/posts";
 import { FaCamera, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 import "./CreatePost.css";
 
-const CreatePost = ({ onPostCreated }) => {
+const CreatePost = ({ onCreatePost }) => {
   const { user } = useContext(AuthContext);
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
@@ -28,25 +27,18 @@ const CreatePost = ({ onPostCreated }) => {
 
     setError("");
 
-    const newPost = {
-      id: posts.length + 1,
+    const postData = {
       userId: user.id,
       user: user.name,
       avatar: user.avatar,
       content,
       image: preview,
-      likes: 0,
-      comments: 0,
-      createdAt: Date.now(),
-      likedBy: [],
-      commentList: [],
     };
 
-    posts.unshift(newPost);
+    onCreatePost(postData);
     setContent("");
     setImage(null);
     setPreview("");
-    onPostCreated();
   };
 
   return (
@@ -91,7 +83,6 @@ const CreatePost = ({ onPostCreated }) => {
             </div>
           )}
           
-
           {error && <p className="error-message">{error}</p>}
         </>
       )}

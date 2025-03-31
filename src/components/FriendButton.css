@@ -1,0 +1,53 @@
+.add-friend-btn,
+.unfriend-btn,
+.cancel-request-btn,
+.accept-friend-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  max-width: 200px;
+}
+
+.add-friend-btn {
+  background: #1877f2;
+  color: white;
+  border: none;
+}
+
+.add-friend-btn:hover {
+  background: #166fe5;
+}
+
+.unfriend-btn {
+  background: #e4e6eb;
+  color: #1c1e21;
+  border: none;
+}
+
+.unfriend-btn:hover {
+  background: #d8dadf;
+}
+
+.cancel-request-btn {
+  background: #e4e6eb;
+  color: #1c1e21;
+  border: none;
+}
+
+.cancel-request-btn:hover {
+  background: #d8dadf;
+}
+
+.accept-friend-btn {
+  background: #42b72a;
+  color: white;
+  border: none;
+}
+
+.accept-friend-btn:hover {
+  background: #36a420;
+} 

@@ -1,69 +1,70 @@
 .profile-container {
-    max-width: 1000px;
-    margin: auto;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-header {
+}
+
+.profile-header {
     text-align: center;
-  }
-  
-  .profile-avatar {
-    width: 100px;
-    height: 100px;
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    border: 3px solid #007bff;
-  }
-  
-  .profile-posts {
+    margin-bottom: 15px;
+}
+
+.profile-header h2 {
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.profile-header p {
+    color: #666;
+    margin: 10px 0;
+}
+
+.edit-profile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    color: #050505;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.edit-profile-btn:hover {
+    background-color: #e4e6eb;
+}
+
+.profile-posts {
     margin-top: 20px;
-  }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 10px;
+    }
+    
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
   
-  .post-image {
-    width: 100%;
-    max-width: 100%;
-    max-height: 80vh;
-    object-fit: contain;
-    display: block;
-    margin: 10px auto;
-    border-radius: 5px;
-  }
-  
-  .actions {
+.actions {
     display: flex;
     gap: 10px;
     margin-top: 5px;
-  }
+}
   
-  .edit-profile-btn {
-    width: fit-content;  /* Độ rộng tự động theo nội dung */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #007bff;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 14px;
-    margin: 20px auto; /* Căn giữa theo chiều ngang */
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .edit-profile-btn:hover {
-    background: #0056b3; /* Hiệu ứng hover */
-  }
-  
-  .edit-profile-btn svg {
-    margin-right: 5px;
-  }
-  
-  .edit-button {
+.edit-button {
     background: #007bff;
     color: white;
     border: none;
@@ -72,19 +73,19 @@
     cursor: pointer;
     margin-top: 10px;
     font-size: 14px;
-  }
+}
   
-  .edit-button:hover {
+.edit-button:hover {
     background: #0056b3;
-  }
+}
   
-  .edit-bio {
+.edit-bio {
     width: 100%;
     max-width: 500px;
     margin-top: 10px;
-  }
+}
   
-  .bio-input {
+.bio-input {
     width: 100%;
     min-height: 100px;
     padding: 10px;
@@ -93,9 +94,9 @@
     margin-bottom: 10px;
     font-size: 14px;
     resize: vertical;
-  }
+}
   
-  .save-button {
+.save-button {
     background: #28a745;
     color: white;
     border: none;
@@ -103,9 +104,139 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
-  }
+}
   
-  .save-button:hover {
+.save-button:hover {
     background: #218838;
-  }
+}
+  
+.create-post-prompt {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+  
+.create-post-prompt:hover {
+    background-color: #f0f2f5;
+}
+  
+.create-post-prompt .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+  
+.create-post-prompt .prompt-text {
+    color: #65676b;
+    font-size: 0.9rem;
+}
+  
+.create-post-section {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+  
+.create-post-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+  
+.create-post-section .post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+  
+.create-post-section .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+  
+.create-post-section .username {
+    font-weight: 600;
+    color: #050505;
+}
+  
+.create-post-section textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #f0f2f5;
+    resize: none;
+    font-size: 0.9rem;
+}
+  
+.create-post-section textarea:focus {
+    outline: none;
+    background: white;
+    box-shadow: 0 0 0 2px #e7f3ff;
+}
+  
+.create-post-section input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+  
+.create-post-section input:focus {
+    outline: none;
+    border-color: #1877f2;
+}
+  
+.create-post-section .post-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 12px;
+}
+  
+.create-post-section button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+  
+.create-post-section .cancel-button {
+    background-color: #e4e6eb;
+    color: #050505;
+}
+  
+.create-post-section .cancel-button:hover {
+    background-color: #d8dadf;
+}
+  
+.create-post-section .post-button {
+    background-color: #1877f2;
+    color: white;
+}
+  
+.create-post-section .post-button:hover {
+    background-color: #166fe5;
+}
+  
+.create-post-section .post-button:disabled {
+    background-color: #e4e6eb;
+    color: #BCC0C4;
+    cursor: not-allowed;
+}
   

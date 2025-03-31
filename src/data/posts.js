@@ -12,6 +12,7 @@ export const posts = [
       likedBy: [],
       commentList: [
         {
+          id: 1,
           userId: 102,
           content: "Đúng rồi!",
         },
@@ -30,6 +31,7 @@ export const posts = [
       likedBy: [],
       commentList: [
         {
+          id: 2,
           userId: 101,
           content: "Cảm ơn bạn!",
         },

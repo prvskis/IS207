@@ -2,6 +2,7 @@
 body {
     font-family: "Montserrat", sans-serif;
     background-color: #f0f2f5;
+    margin: 0;
   }
 
 .container {
@@ -49,7 +50,7 @@ body {
 .button:hover {
     color: #007bff;
   }
-  
+/*   
 .comment-box {
     margin-top: 10px;
     display: flex;
@@ -99,5 +100,5 @@ body {
 
 .user-link:hover {
   text-decoration: underline;
-}
+} */
 

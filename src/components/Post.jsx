@@ -1,13 +1,14 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { FaHeart, FaComment, FaShare } from "react-icons/fa";
-import { users } from "../data/users";
+import { FaHeart, FaTrash } from "react-icons/fa";
+import { FaRegHeart, FaRegComment } from "react-icons/fa6";
 import { AuthContext } from "../context/AuthContext";
+import CommentSection from "./CommentSection";
 import "./Post.css";
 
-const Post = ({ post, onLike, onComment }) => {
+const Post = ({ post, onLike, onComment, onDelete }) => {
   const { user } = useContext(AuthContext);
-  const [commentText, setCommentText] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
   const formatTime = (timestamp) => {
@@ -33,95 +34,111 @@ const Post = ({ post, onLike, onComment }) => {
     }
   };
 
-  const handleLike = () => {
-    if (user) {
-      const isLiked = post.likedBy.includes(user.id);
-      onLike(post.id, isLiked);
-    }
+  const handleDelete = () => {
+    onDelete(post.id);
+    setShowDeleteModal(false);
   };
 
-  const handleComment = (e) => {
-    e.preventDefault();
-    if (commentText.trim() && user) {
-      onComment(post.id, {
-        userId: user.id,
-        content: commentText,
-      });
-      setCommentText("");
-      setShowComments(true);
-    }
+  const toggleComments = () => {
+    setShowComments(!showComments);
   };
 
-  const getCommentUserInfo = (userId) => {
-    const commentUser = users.find(u => u.id === userId);
-    return {
-      name: commentUser?.name || "Người dùng",
-      avatar: commentUser?.avatar || "https://i.pravatar.cc/150"
-    };
+  const handleDeleteComment = (commentId) => {
+    const updatedComments = post.commentList.filter(comment => comment.id !== commentId);
+    onComment(post.id, "", commentId);
+  };
+
+  const handleEditComment = (commentId, newContent) => {
+    const updatedComments = post.commentList.map(comment => {
+      if (comment.id === commentId) {
+        return { ...comment, content: newContent };
+      }
+      return comment;
+    });
+    onComment(post.id, newContent, commentId);
   };
 
   return (
-    <div className="post">
-      <div className="post-header">
-        <img src={post.avatar} alt="avatar" className="avatar" />
-        <div className="post-info">
-          <Link to={`/profile/${post.userId}`} className="user-link">
-            <h3>{post.user}</h3>
-          </Link>
-          <span className="post-time">{formatTime(post.createdAt)}</span>
+    <>
+      <div className="post">
+        <div className="post-header">
+          <div className="post-header-left">
+            <img src={post.avatar} alt={post.user} className="avatar" />
+            <div className="post-info">
+              <Link to={`/profile/${post.userId}`} className="user-link">
+                <h3>{post.user}</h3>
+              </Link>
+              <span className="post-time">{formatTime(post.createdAt)}</span>
+            </div>
+          </div>
+          {user && user.id === post.userId && (
+            <button 
+              onClick={() => setShowDeleteModal(true)} 
+              className="delete-button" 
+              title="Xóa bài viết"
+            >
+              <FaTrash />
+            </button>
+          )}
         </div>
+
+        <div className="post-content">
+          <p className="post-content-text">{post.content}</p>
+          {post.image && <img src={post.image} alt="post" className="post-image" />}
+        </div>
+
+        <div className="post-actions">
+          <button
+            className={`action-button ${post.likedBy.includes(user?.id) ? "liked" : ""}`}
+            onClick={() => onLike(post.id, post.likedBy.includes(user?.id))}
+          >
+            {post.likedBy.includes(user?.id) ? (
+              <FaHeart className="heart-icon" />
+            ) : (
+              <FaRegHeart className="heart-icon" />
+            )}
+            <span>{post.likes}</span>
+          </button>
+          <button className="action-button" onClick={toggleComments}>
+            <FaRegComment className="comment-icon" />
+            <span>{post.commentList?.length || 0}</span>
+          </button>
+        </div>
+
+        {showComments && (
+          <CommentSection 
+            postId={post.id} 
+            comments={post.commentList || []} 
+            onComment={onComment}
+            onDeleteComment={handleDeleteComment}
+            onEditComment={handleEditComment}
+          />
+        )}
       </div>
 
-      <div className="post-content">
-        <p className="post-content-text">{post.content}</p>
-        {post.image && <img src={post.image} alt="post" className="post-image" />}
-      </div>
-
-      <div className="post-actions">
-        <button className="action-button" onClick={handleLike}>
-          <FaHeart className={post.likedBy.includes(user?.id) ? "liked" : ""} />
-          <span>{post.likes}</span>
-        </button>
-        <button
-          className="action-button"
-          onClick={() => setShowComments(!showComments)}
-        >
-          <FaComment />
-          <span>{post.comments}</span>
-        </button>
-      </div>
-
-      {showComments && (
-        <div className="comments-section">
-          <form onSubmit={handleComment} className="comment-form">
-            <input
-              type="text"
-              placeholder="Viết bình luận..."
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
-            />
-            <button type="submit">Đăng</button>
-          </form>
-
-          <div className="comments-list">
-            {post.commentList?.map((comment, index) => {
-              const commentUser = getCommentUserInfo(comment.userId);
-              return (
-                <div key={index} className="comment">
-                  <img src={commentUser.avatar} alt="avatar" className="comment-avatar" />
-                  <div className="comment-content">
-                    <Link to={`/profile/${comment.userId}`} className="comment-username">
-                      {commentUser.name}
-                    </Link>
-                    <p>{comment.content}</p>
-                  </div>
-                </div>
-              );
-            })}
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="delete-modal">
+            <h3>Xóa bài viết</h3>
+            <p>Bạn có chắc chắn muốn xóa bài viết này không? Hành động này không thể hoàn tác.</p>
+            <div className="modal-buttons">
+              <button 
+                className="modal-button cancel-button" 
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Hủy
+              </button>
+              <button 
+                className="modal-button confirm-button" 
+                onClick={handleDelete}
+              >
+                Xóa
+              </button>
+            </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

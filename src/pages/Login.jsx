@@ -1,13 +1,19 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // Nếu đã đăng nhập, chuyển hướng về trang chủ
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,9 +25,10 @@ const Login = () => {
   };
 
   return (
-    <div style={styles.container} className="login-container">
-      <h2>Đăng nhập</h2>
-      <form onSubmit={handleLogin} style={styles.form}>
+    <div className="login-container">
+      <h2 className="login-title">Đăng nhập</h2>
+      <form onSubmit={handleLogin}>
+        {error && <div className="error-message">{error}</div>}
         <input
           type="email"
           id="email"
@@ -30,7 +37,6 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={styles.input}
         />
         <input
           type="password"
@@ -40,9 +46,8 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={styles.input}
         />
-        <button type="submit" style={styles.button}>Đăng nhập</button>
+        <button type="submit">Đăng nhập</button>
       </form>
     </div>
   );

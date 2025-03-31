@@ -24,7 +24,7 @@
     margin-bottom: 10px;
   }
   
-.post-actions {
+.create-post .post-actions {
     display: flex;
     width: 100%;
     align-items: center;

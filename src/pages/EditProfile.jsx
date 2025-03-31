@@ -18,7 +18,6 @@ const EditProfile = () => {
   });
 
   useEffect(() => {
-    // Đợi một chút để AuthContext có thời gian load dữ liệu
     const timer = setTimeout(() => {
       const savedUser = localStorage.getItem("loggedInUser");
       if (savedUser) {
@@ -38,7 +37,7 @@ const EditProfile = () => {
     return () => clearTimeout(timer);
   }, [navigate]);
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (e) => {    
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -52,16 +51,18 @@ const EditProfile = () => {
 
   const handleSave = () => {
     const savedUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (!savedUser) return;
+    if (!savedUser) return; 
 
-    // Cập nhật thông tin người dùng
     const userIndex = users.findIndex((u) => u.id === savedUser.id);
     if (userIndex !== -1) {
       users[userIndex] = { ...users[userIndex], ...updatedUser };
-      // Cập nhật localStorage
       localStorage.setItem("loggedInUser", JSON.stringify({ ...savedUser, ...updatedUser }));
     }
     navigate(`/profile/${savedUser.id}`);
+  };
+
+  const handleCancel = () => {
+    navigate(-1);
   };
 
   if (isLoading) {
@@ -98,10 +99,11 @@ const EditProfile = () => {
       />
       <div className="button-group">
         <button onClick={handleSave} className="edit-profile-button">Lưu</button>
-        <button onClick={() => navigate(-1)} className="edit-profile-button cancel">Hủy</button>
+        <button onClick={handleCancel} className="edit-profile-button cancel">Hủy</button>
       </div>
     </div>
   );
 };
 
 export default EditProfile;
+

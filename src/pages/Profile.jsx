@@ -5,10 +5,11 @@ import { users } from "../data/users";
 import { AuthContext } from "../context/AuthContext";
 import { usePostActions } from "../hooks/usePostActions";
 import { FaEdit } from 'react-icons/fa';
-import Post from "../components/Post";
-import CreatePost from "../components/CreatePost";
-import FriendButton from "../components/FriendButton";
-import ErrorBoundary from "../components/ErrorBoundary";
+import Post from "../components/post/Post";
+import CreatePost from "../components/post/CreatePost";
+import FriendButton from "../components/social/FriendButton";
+import FriendsList from "../components/social/FriendsList";
+import ErrorBoundary from "../components/common/ErrorBoundary";
 import "./Profile.css";
 
 const ProfileContent = () => {
@@ -20,12 +21,19 @@ const ProfileContent = () => {
   const { allPosts, handleLike, handleComment, handleDelete, handleCreatePost } = usePostActions();
   const [userPosts, setUserPosts] = useState([]);
   const [user, setUser] = useState(null);
+  const [friendshipStatus, setFriendshipStatus] = useState(null);
 
   useEffect(() => {
     // Tìm thông tin người dùng từ danh sách users
     const foundUser = users.find((u) => u.id === numericUserId);
     setUser(foundUser);
-  }, [numericUserId]);
+
+    // Kiểm tra trạng thái kết bạn
+    if (currentUser && foundUser) {
+      const isFriend = currentUser.friends?.includes(numericUserId) || foundUser.friends?.includes(currentUser.id);
+      setFriendshipStatus(isFriend);
+    }
+  }, [numericUserId, currentUser]);
 
   useEffect(() => {
     if (numericUserId) {
@@ -66,10 +74,15 @@ const ProfileContent = () => {
         <h2>{user.name || "Người dùng ẩn danh"}</h2>
         <p>Bio: {user.bio || "Chưa cập nhật tiểu sử."}</p>
         {!isOwnProfile && (
-          <FriendButton 
-            currentUserId={currentUser.id} 
-            targetUserId={numericUserId} 
-          />
+          <div className="social-actions">
+            <div className="friendship-status">
+              {friendshipStatus ? "Các bạn là bạn bè" : "Các bạn chưa là bạn bè"}
+            </div>
+            <FriendButton 
+              currentUserId={currentUser.id} 
+              targetUserId={numericUserId} 
+            />
+          </div>
         )}
         {isOwnProfile && (
           <Link to="/edit-profile" className="edit-profile-btn">
@@ -78,6 +91,8 @@ const ProfileContent = () => {
           </Link>
         )}
       </div>
+
+      <FriendsList userId={numericUserId} />
 
       <div className="profile-posts">
         {isOwnProfile && (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaRegComment } from "react-icons/fa";
+import { IoSend } from "react-icons/io5";
 import "./AddComment.css";
 
 const AddComment = ({ postId, onComment }) => {
@@ -20,7 +20,6 @@ const AddComment = ({ postId, onComment }) => {
   return (
     <div className="comment-section">
       <form onSubmit={handleSubmit} className="comment-form">
-        <FaRegComment className="comment-icon" />
         <input
           type="text"
           id={`comment-input-${postId}`}
@@ -30,8 +29,8 @@ const AddComment = ({ postId, onComment }) => {
           onChange={handleChange}
           className="comment-input"
         />
-        <button type="submit" className="comment-button">
-          Đăng
+        <button type="submit" disabled={!comment.trim()} className="comment-button">
+          <IoSend />
         </button>
       </form>
     </div>

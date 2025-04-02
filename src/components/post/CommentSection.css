@@ -28,7 +28,12 @@
 }
 
 .comments-list {
-  padding: 10px;
   max-height: 400px;
   overflow-y: auto;
 } 
+
+.comment-title {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px;
+}

@@ -1,4 +1,4 @@
-import { useFriend } from '../context/FriendContext';
+import { useFriend } from '../../context/FriendContext';
 import './FriendButton.css';
 
 export default function FriendButton({ currentUserId, targetUserId }) {

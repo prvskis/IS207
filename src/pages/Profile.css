@@ -1,12 +1,16 @@
 .profile-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
 }
 
 .profile-header {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-avatar {
@@ -14,16 +18,18 @@
     height: 150px;
     border-radius: 50%;
     margin-bottom: 15px;
+    border: 4px solid #1877f2;
 }
 
 .profile-header h2 {
     margin: 10px 0;
+    color: #1c1e21;
     font-size: 24px;
 }
 
 .profile-header p {
-    color: #666;
-    margin: 10px 0;
+    color: #65676b;
+    margin: 10px 0 20px;
 }
 
 .edit-profile-btn {
@@ -31,30 +37,55 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background-color: #f0f2f5;
-    border-radius: 20px;
+    background: #e4e6eb;
     color: #050505;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
     text-decoration: none;
-    font-weight: 500;
-    margin-top: 10px;
+    transition: background-color 0.2s;
 }
 
 .edit-profile-btn:hover {
-    background-color: #e4e6eb;
+    background: #d8dadf;
+}
+
+.edit-profile-btn svg {
+    font-size: 16px;
 }
 
 .profile-posts {
-    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.profile-message {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 500px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .profile-container {
-        padding: 10px;
+        padding: 0 10px;
     }
-    
+
     .profile-avatar {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-header h2 {
+        font-size: 20px;
     }
 }
   
@@ -238,5 +269,26 @@
     background-color: #e4e6eb;
     color: #BCC0C4;
     cursor: not-allowed;
+}
+  
+.friendship-status {
+    color: #65676b;
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    padding: 8px 16px;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+.social-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
 }
   

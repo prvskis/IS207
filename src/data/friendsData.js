@@ -1,3 +1,5 @@
+import { users } from './users';
+
 // Trạng thái friendship
 export const FriendshipStatus = {
   PENDING: 'pending',    // Đã gửi lời mời
@@ -48,7 +50,7 @@ export const getFriendshipStatus = (userId1, userId2, friendshipsList) => {
 
 // Hàm helper để lấy danh sách bạn bè của một user
 export const getFriendList = (userId, friendshipsList) => {
-  return friendshipsList
+  const friendIds = friendshipsList
     .filter(f => 
       (f.user1Id === userId || f.user2Id === userId) && 
       f.status === FriendshipStatus.ACCEPTED
@@ -57,6 +59,8 @@ export const getFriendList = (userId, friendshipsList) => {
       const friendId = f.user1Id === userId ? f.user2Id : f.user1Id;
       return friendId;
     });
+
+  return friendIds.map(friendId => users.find(user => user.id === friendId));
 };
 
 // Hàm helper để lấy danh sách lời mời kết bạn đã nhận

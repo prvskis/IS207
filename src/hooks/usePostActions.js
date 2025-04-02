@@ -27,25 +27,36 @@ export const usePostActions = () => {
   })));
 
   const syncWithGlobalPosts = (updatedPosts) => {
+    // Đảm bảo mọi post đều có thông tin user trong comments
+    const postsWithUserInfo = updatedPosts.map(post => ({
+      ...post,
+      commentList: Array.isArray(post.commentList) 
+        ? post.commentList.map(comment => ({
+            ...comment,
+            ...getUserInfo(comment.userId)
+          }))
+        : []
+    }));
+
     // Cập nhật global posts
     posts.length = 0;
-    posts.push(...updatedPosts);
+    posts.push(...postsWithUserInfo);
     // Cập nhật local posts
-    setAllPosts(updatedPosts);
+    setAllPosts(postsWithUserInfo);
   };
 
   const handleCreatePost = (postData) => {
     const newPost = {
-      id: Math.max(...posts.map(p => p.id), 0) + 1,
+      id: Math.max(...allPosts.map(p => p.id), 0) + 1,
       ...postData,
       likes: 0,
       comments: 0,
       likedBy: [],
-      commentList: [], // Khởi tạo commentList là mảng rỗng
+      commentList: [],
       createdAt: new Date().getTime()
     };
 
-    const updatedPosts = [newPost, ...posts];
+    const updatedPosts = [newPost, ...allPosts];
     syncWithGlobalPosts(updatedPosts);
     return newPost;
   };

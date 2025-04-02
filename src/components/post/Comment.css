@@ -16,11 +16,12 @@
 }
 
 .comment-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
   background-color: #f0f2f5;
+  width: fit-content;
+  max-width: 80%;
   border-radius: 14px;
   padding: 8px 15px;
   position: relative;
@@ -60,7 +61,7 @@
   transform: translateY(-50%);
   opacity: 0;
   transition: opacity 0.2s ease;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .comment:hover .comment-menu {
@@ -91,14 +92,14 @@
 .menu-dropdown {
   position: absolute;
   top: 0;
-  left: 100%;
+  right: 100%;
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   min-width: 150px;
   z-index: 1000;
-  margin-left: 5px;
-  transform-origin: top left;
+  margin-right: 5px;
+  transform-origin: top right;
 }
 
 .menu-item {
@@ -139,7 +140,7 @@
 }
 
 .edit-comment-input {
-  width: 100%;
+  width: 90%;
   min-height: 60px;
   padding: 8px;
   border: 1px solid #e1e8ed;

@@ -1,0 +1,89 @@
+.friends-list-container {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.friends-list-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e4e6eb;
+}
+
+.friends-icon {
+  color: #1877f2;
+  font-size: 24px;
+}
+
+.friends-list-header h3 {
+  color: #1c1e21;
+  font-size: 18px;
+  margin: 0;
+}
+
+.friends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.friend-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.friend-card:hover {
+  background-color: #f0f2f5;
+}
+
+.friend-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.friend-card:hover .friend-avatar {
+  border-color: #1877f2;
+}
+
+.friend-name {
+  margin-top: 8px;
+  color: #1c1e21;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.no-friends {
+  text-align: center;
+  padding: 20px;
+  color: #65676b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .friends-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .friend-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .friend-name {
+    font-size: 13px;
+  }
+} 

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
 import "./Navbar.css";
@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <h1 className="navbar-left">
-        <Link to="/" className="logo">🚀 MẠNG XÃ HỘI</Link>
+        <Link to="/" className="logo">LOSSLESS</Link>
       </h1>
       <div className="navbar-center">
         <input type="text" placeholder="Tìm kiếm..." className="search-bar" />

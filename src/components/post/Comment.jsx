@@ -1,7 +1,7 @@
 import { useState, useContext, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaTrash, FaEdit, FaEllipsisH } from "react-icons/fa";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import "./Comment.css";
 
 const Comment = ({ comment, onDelete, onEdit }) => {

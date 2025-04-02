@@ -3,17 +3,29 @@
     align-items: center;
     justify-content: space-between;
     background-color: #242526;
-    padding: 10px 30px;
+    padding: 5px 30px;
     color: white;
     position: sticky;
     top: 0;
     z-index: 100;
   }
+
+  .navbar-left {
+    flex: 1;
+  }
+
   .navbar-left .logo {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     text-decoration: none;
     color: white;
+  }
+  
+  .navbar-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .navbar-center .search-bar {
@@ -32,7 +44,9 @@
   }
   
   .navbar-right {
+    flex: 1;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
   }
   
